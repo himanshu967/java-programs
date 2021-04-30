@@ -28,7 +28,7 @@ public class lazer2 {
         }
         int count = 0, flag = 0;
         while (!wallhit(dir, i, j, x, y, mir)) {
-            if (count > x * y) {
+            if (count > x * y*2) {
                 System.out.println("infinite loop detected");
                 flag++;
                 break;
