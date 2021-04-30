@@ -27,12 +27,9 @@ public class lazer2 {
             mir[axis1][axis2] = c;
         }
         int count = 0, flag = 0;
+        HashSet<VisitData> h1=new HashSet<>();
+
         while (!wallhit(dir, i, j, x, y, mir)) {
-            if (count > x * y*2) {
-                System.out.println("infinite loop detected");
-                flag++;
-                break;
-            }
             try {
                 if (dir == 'e') {
                     if (mir[i + 1][j] == 'E') {
@@ -49,6 +46,11 @@ public class lazer2 {
                     count++;
                     i++;
                     // continue;
+                    boolean check=loop(i,j,'e',h1);
+                    if(check==true)
+                    {flag=1;
+                    break;
+                    }
                 }
 
                 if (dir == 'w') 
@@ -72,6 +74,11 @@ public class lazer2 {
                     }
                     count++;
                     i--;
+                    boolean check=loop(i,j,'w',h1);
+                    if(check==true)
+                   {  flag=1;
+                        break;
+                   }
                     // continue;
                 }
 
@@ -90,6 +97,11 @@ public class lazer2 {
                     }
                     count++;
                     j++;
+                    boolean check=loop(i,j,'n',h1);
+                    if(check==true)
+                   {  flag=1;
+                        break;
+                   }
                     // continue;
                 }
 
@@ -107,6 +119,11 @@ public class lazer2 {
                     }
                     count++;
                     j--;
+                    boolean check=loop(i,j,'s',h1);
+                    if(check==true)
+                   { flag=1;
+                       break;
+                   }
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
                 // System.out.println("count=" + count);
@@ -115,6 +132,8 @@ public class lazer2 {
         }
         if (flag == 0)
             System.out.println("count=" + count + ", final box coordinates:" + i + " " + j);
+            else
+            System.out.println("Infinite loop detected");
     }
 
     public static boolean wallhit(char dir, int i, int j, int x, int y, char[][] mir) {
@@ -128,4 +147,34 @@ public class lazer2 {
             return true;
         return false;
     }
+
+    public static boolean loop(int v, int w, char x, HashSet<VisitData> h2)
+    {int flag=0;
+       VisitData temp=new VisitData(v,w,x);
+       for(VisitData a3:h2)
+       {
+           if(a3.a==v&&a3.b==w&&a3.c==x)
+          { flag=1;break;
+        }
+       }
+      if(flag==1)
+      return true;
+      else 
+      { h2.add(temp);
+        flag=0;
+      return false;
+      }
+    }
+}
+
+class VisitData
+{
+  int a,b;
+  char c;
+  VisitData(int a1,int b1, char c1 )
+  {
+      a=a1;
+      b=b1;
+      c=c1;
+  }
 }
