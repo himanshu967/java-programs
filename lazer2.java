@@ -20,7 +20,7 @@ public class lazer2 {
         System.out.println("enter no of mirrors");
         int n = sc.nextInt();
         while (n-- > 0) {
-            System.out.println("enter mirror coordinates and type('/' or '\')");
+            System.out.println("enter mirror coordinates and type('/' or '\\')");
             int axis1 = sc.nextInt();
             int axis2 = sc.nextInt();
             char c = sc.next().charAt(0);
@@ -45,9 +45,9 @@ public class lazer2 {
                     }
                     count++;
                     i++;
-                    // continue;
-                    boolean check=loop(i,j,'e',h1);
-                    if(check==true)
+                    // c
+                   
+                    if(loop(i,j,'e',h1))
                     {flag=1;
                     break;
                     }
@@ -74,8 +74,8 @@ public class lazer2 {
                     }
                     count++;
                     i--;
-                    boolean check=loop(i,j,'w',h1);
-                    if(check==true)
+            
+                    if(loop(i,j,'w',h1))
                    {  flag=1;
                         break;
                    }
@@ -97,8 +97,8 @@ public class lazer2 {
                     }
                     count++;
                     j++;
-                    boolean check=loop(i,j,'n',h1);
-                    if(check==true)
+                   
+                    if(loop(i,j,'n',h1))
                    {  flag=1;
                         break;
                    }
@@ -119,8 +119,8 @@ public class lazer2 {
                     }
                     count++;
                     j--;
-                    boolean check=loop(i,j,'s',h1);
-                    if(check==true)
+                  
+                    if(loop(i,j,'s',h1))
                    { flag=1;
                        break;
                    }
@@ -154,8 +154,9 @@ public class lazer2 {
        for(VisitData a3:h2)
        {
            if(a3.a==v&&a3.b==w&&a3.c==x)
-          { flag=1;break;
-        }
+          { flag=1;
+            break;
+          }
        }
       if(flag==1)
       return true;
